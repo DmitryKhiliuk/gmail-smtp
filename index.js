@@ -4,7 +4,9 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const {request} = require("express");
 const app = express()
-const port = 3010
+const port = process.env.PORT || 3010
+const smtp_login = process.env.SMTP_LOGIN
+const smtp_password = process.env.SMTP_PASSWORD
 
 
 app.use(cors())
@@ -29,8 +31,8 @@ app.post('/sendMessage', async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-            user: 'mailforapp0000', // generated ethereal user
-            pass: 'kloohlyijzljjdju', // пароль приложения express https://support.google.com/accounts/answer/185833?hl=ru
+            user: /*'mailforapp0000'*/ smtp_login, // generated ethereal user
+            pass: /*'kloohlyijzljjdju'*/ smtp_password, // пароль приложения express https://support.google.com/accounts/answer/185833?hl=ru
         },
     });
 
