@@ -31,10 +31,9 @@ app.post('/sendMessage', async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-            //user: smtp_login, // generated ethereal user
-            //pass: smtp_password, // пароль приложения express https://support.google.com/accounts/answer/185833?hl=ru
-            user: mailforapp0000,
-            pass: MailForApp500
+            user: smtp_login, // generated ethereal user
+            pass: smtp_password, // пароль приложения express https://support.google.com/accounts/answer/185833?hl=ru
+
         },
     });
 
