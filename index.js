@@ -31,9 +31,22 @@ app.post('/sendMessage', async (req, res) => {
         port: 587,
         secure: false,
         auth: {
-            user: 'mailforapp0000@gmail.com', // generated ethereal user
-            pass: 'moqnjifkemqhexce', // пароль приложения express https://support.google.com/accounts/answer/185833?hl=ru
+            user: smtp_login, // generated ethereal user
+            pass: smtp_password, // пароль приложения express https://support.google.com/accounts/answer/185833?hl=ru
         },
+    });
+
+    await new Promise((resolve, reject) => {
+        // verify connection configuration
+        transporter.verify(function (error, success) {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                console.log("Server is ready to take our messages");
+                resolve(success);
+            }
+        });
     });
 
     let info = await transporter.sendMail({
