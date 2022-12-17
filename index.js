@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/sendMessage', async (req, res) => {
-    res.send('send message!')
+
 
     let {name, email, message} = req.body
 
@@ -35,6 +35,8 @@ app.post('/sendMessage', async (req, res) => {
             //pass: 'moqnjifkemqhexce'
         },
     });
+try {
+
 
     let info = await transporter.sendMail({
         from: 'mailforapp0000', // sender address
@@ -46,6 +48,10 @@ app.post('/sendMessage', async (req, res) => {
 <div>email: ${email}</div>
 <div>message: ${message}</div>`, // html body
     });
+    res.send({message: 'send message!', info})
+} catch (error){
+    res.status(400).send(error)
+}
 })
 
 app.listen(port, () => {
