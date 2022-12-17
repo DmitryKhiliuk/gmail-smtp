@@ -27,13 +27,12 @@ app.post('/sendMessage', async (req, res) => {
     let {name, email, message} = req.body
 
     let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
+        service: 'gmail',
         auth: {
             user: smtp_login, // generated ethereal user
             pass: smtp_password, // пароль приложения express https://support.google.com/accounts/answer/185833?hl=ru
-
+            //user: 'mailforapp0000@gmail.com',
+            //pass: 'moqnjifkemqhexce'
         },
     });
 
